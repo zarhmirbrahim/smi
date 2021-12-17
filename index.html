@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon site Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/df739c1b6a.js" crossorigin="anonymous"></script>
+    <script src="functions.js"></script>
+
+</head>
+<body>
+    <script src="color.js"></script>
+    <table class="tbl">
+        <tr>
+            <td colspan="12">
+                <h1> 
+                <div class="div1" id="Titre">Ma boutique en ligne </div>
+                </h1>
+            </td>
+        </tr>
+        <tr class="flex">
+            <td colspan="9">
+                <div class="div2">
+                    <script src="items.js">
+                    </script>
+                </div>
+                
+            </td>
+            <td colspan="3">
+                <div class="div3">
+                    <div>
+                        <input class="box" size="40" height="15px" type="text" name="" id="searchbar" placeholder="Rechercher des produis...">
+                    </div>
+
+                    <div id="panier">
+                        <script>
+                        UpdateItems();
+
+                        document.getElementById("searchbar").addEventListener(
+                            "input",
+                            (ev) => {
+                                var query = ev.target.value;
+                                for (const it of Items)
+                                {
+                                    var str_idx = it.nom.indexOf(query);
+                                    // Display if
+                                    // search string is empty
+                                    // search string match ("AAA") the first element name("AAA BBB CCC")
+                                    //                                                     ^^^
+                                    // search string ("BBB") math the N'th element name ("AAA BBB CCC")
+                                    //                                                            ^^^
+                                    
+                                    if (!query.length || str_idx == 0 || str_idx > 0 && it.nom[str_idx - 1] == ' ')
+                                    {
+                                        document.getElementById("main_" + it.img).style.display = "";
+                                    }
+                                    else
+                                        document.getElementById("main_" + it.img).style.display = "none";
+                                }
+                            }
+                        )
+                        </script>
+                    </div>
+                    </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
